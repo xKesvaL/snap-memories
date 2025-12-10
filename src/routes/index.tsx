@@ -8,10 +8,11 @@ import { Progress } from '@/components/ui/progress';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 import { parseMemoriesHTML, MemoryItem } from '@/lib/memories-parser';
 import { streamMemoriesToZip, DownloadProgress } from '@/lib/zip-stream';
-import { Loader2, Download, XCircle, FileWarning, Upload, CheckCircle2, RefreshCcw, Film, Image as ImageIcon, FileText } from 'lucide-react';
+import { Loader2, Download, XCircle, FileWarning, Upload, CheckCircle2, RefreshCcw, Film, Image as ImageIcon, FileText, HelpCircle } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { toast } from 'sonner';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 export const Route = createFileRoute('/')({
   component: MemoriesPage,
@@ -123,7 +124,26 @@ function MemoriesPage() {
             <div className="mx-auto bg-[#f9f601] w-20 h-20 rounded-full flex items-center justify-center mb-6 shadow-sm">
               <Upload className="w-10 h-10 text-black" />
             </div>
-            <CardTitle className="text-3xl font-bold tracking-tight">Upload memories_history.html</CardTitle>
+            <CardTitle className="text-3xl font-bold tracking-tight flex items-center justify-center gap-3">
+              Upload memories_history.html
+              <TooltipProvider>
+                <Tooltip delayDuration={300}>
+                  <TooltipTrigger asChild>
+                    <HelpCircle className="w-6 h-6 text-muted-foreground/60 hover:text-black cursor-help transition-colors" />
+                  </TooltipTrigger>
+                  <TooltipContent className="max-w-xs bg-slate-900 text-slate-50 border-slate-800 p-4">
+                    <p className="font-bold mb-2 text-[#f9f601]">How to get this file:</p>
+                    <ol className="list-decimal pl-4 space-y-2 text-sm">
+                      <li>Open Snapchat <strong>Settings</strong> ⚙️</li>
+                      <li>Scroll down to <strong>"My Data"</strong></li>
+                      <li>Request data (Select "Memories")</li>
+                      <li>Wait for email & Download ZIP</li>
+                      <li>Unzip and find: <br/><code className="bg-slate-800 px-1 py-0.5 rounded text-xs">html/memories_history.html</code></li>
+                    </ol>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </CardTitle>
             <CardDescription className="text-lg mt-3 max-w-md mx-auto">
               Select the HTML file from your Snapchat data export to start downloading your memories.
             </CardDescription>
