@@ -22,5 +22,9 @@ export const sitemap: Sitemap<TRoutes> = {
       priority: 0.5,
       changeFrequency: "monthly",
     },
+    "/help": {
+      priority: 0.5,
+      changeFrequency: "monthly",
+    },
   },
 };

@@ -7,6 +7,7 @@ import {
   ShieldCheck,
   Heart,
   X,
+  HelpCircle,
 } from 'lucide-react'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 
@@ -32,6 +33,10 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-6 font-medium">
              <Link to="/" className="hover:text-black/70 transition-colors">Home</Link>
+             <Link to="/help" className="flex items-center gap-1.5 hover:text-black/70 transition-colors">
+                <HelpCircle className="w-4 h-4" />
+                Help
+             </Link>
              <Link to="/security" className="flex items-center gap-1.5 hover:text-black/70 transition-colors">
                 <ShieldCheck className="w-4 h-4" />
                 Security
@@ -98,6 +103,19 @@ export default function Header() {
           >
             <Home size={20} />
             <span className="font-medium">Home</span>
+          </Link>
+
+          <Link
+            to="/help"
+            onClick={() => setIsOpen(false)}
+            className="flex items-center gap-3 p-3 rounded-lg hover:bg-[#f9f601] text-black transition-colors mb-2"
+            activeProps={{
+              className:
+                'flex items-center gap-3 p-3 rounded-lg bg-[#f9f601] hover:bg-[#f9f601] transition-colors mb-2',
+            }}
+          >
+            <HelpCircle size={20} />
+            <span className="font-medium">Help</span>
           </Link>
 
           <Link
