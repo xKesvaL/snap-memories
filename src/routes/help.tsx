@@ -63,7 +63,8 @@ function HelpPage() {
                 <li>Go to <strong>Settings</strong> (the gear icon ⚙️ in the profile).</li>
                 <li>Scroll down to the bottom and find <strong>"My Data"</strong>.</li>
                 <li>Log in with your Snapchat credentials if asked.</li>
-                <li>Ensure <strong>"Memories"</strong> is selected (it usually is by default).</li>
+                <li>Ensure <strong>"Memories"</strong> is selected.</li>
+                <li>Make sure you selecte "All the time" for the period</li>
                 <li>Enter your email address and click <strong>"Submit Request"</strong>.</li>
               </ol>
               <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg text-sm text-blue-800 dark:text-blue-200 border border-blue-100 dark:border-blue-900/50">
