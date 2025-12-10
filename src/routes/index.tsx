@@ -125,11 +125,11 @@ function MemoriesPage() {
       
       {step === 1 && (
         <Card className="w-full shadow-lg border-2 border-dashed border-gray-200 hover:border-primary/50 transition-colors bg-white/50 backdrop-blur-sm">
-          <CardHeader className="text-center pt-10">
+          <CardHeader className="text-center pt-10 w-full">
             <div className="mx-auto bg-[#f9f601] w-20 h-20 rounded-full flex items-center justify-center mb-6 shadow-sm">
               <Upload className="w-10 h-10 text-black" />
             </div>
-            <CardTitle className="text-3xl font-bold tracking-tight flex items-center justify-center gap-3">
+            <CardTitle className="text-3xl font-bold tracking-tight flex items-center justify-center gap-3 flex-wrap">
               Upload memories_history.html
               <TooltipProvider>
                 <Tooltip delayDuration={300}>
