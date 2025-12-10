@@ -30,13 +30,41 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'TanStack Start Starter',
+        title: 'SnapMemories | Download Snapchat Memories',
+      },
+      {
+        name: 'description',
+        content: 'Securely download all your Snapchat memories and stories in one click. Client-side processing, privacy-focused, and open source.',
+      },
+      {
+        property: 'og:type',
+        content: 'website',
+      },
+      {
+        property: 'og:title',
+        content: 'SnapMemories | Download Snapchat Memories',
+      },
+      {
+        property: 'og:description',
+        content: 'Securely download all your Snapchat memories and stories in one click. Client-side processing, privacy-focused, and open source.',
+      },
+      {
+        name: 'twitter:card',
+        content: 'summary_large_image',
+      },
+      {
+        name: 'theme-color',
+        content: '#f9f601',
       },
     ],
     links: [
       {
         rel: 'stylesheet',
         href: appCss,
+      },
+      {
+        rel: 'icon',
+        href: '/snapchat.svg',
       },
     ],
   }),

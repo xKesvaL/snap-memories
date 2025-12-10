@@ -1,10 +1,21 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { ShieldCheck, Lock, Github, Globe, ServerOff, Eye, GitCommit, CheckCircle } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { ShieldCheck, Lock, Github, Globe, ServerOff, Eye, GitCommit } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export const Route = createFileRoute('/security')({
   component: SecurityPage,
+  head: () => ({
+    meta: [
+      {
+        title: 'Security & Privacy | SnapMemories',
+      },
+      {
+        name: 'description',
+        content: 'Learn how SnapMemories protects your data. Client-side processing, direct connections, and open source code verification.',
+      },
+    ],
+  }),
 });
 
 function SecurityPage() {

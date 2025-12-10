@@ -16,6 +16,17 @@ import { useAutoAnimate } from '@formkit/auto-animate/react';
 export const Route = createFileRoute('/')({
   component: MemoriesPage,
   ssr: false,
+  head: () => ({
+    meta: [
+      {
+        title: 'SnapMemories | Download Snapchat Memories',
+      },
+      {
+        name: 'description',
+        content: 'The easiest and most secure way to download your Snapchat memories. Processed locally in your browser, no data upload.',
+      },
+    ],
+  }),
 });
 
 type Step = 1 | 2 | 3;
@@ -23,7 +34,6 @@ type Step = 1 | 2 | 3;
 function MemoriesPage() {
   const [parent] = useAutoAnimate();
   const [step, setStep] = useState<Step>(1);
-  const [file, setFile] = useState<File | null>(null);
   const [memories, setMemories] = useState<MemoryItem[]>([]);
   const [isParsing, setIsParsing] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
@@ -35,7 +45,6 @@ function MemoriesPage() {
     const selectedFile = e.target.files?.[0];
     if (!selectedFile) return;
 
-    setFile(selectedFile);
     setIsParsing(true);
     setMemories([]);
     setProgress(null);
@@ -95,7 +104,6 @@ function MemoriesPage() {
   };
 
   const handleReset = () => {
-    setFile(null);
     setMemories([]);
     setProgress(null);
     setStep(1);

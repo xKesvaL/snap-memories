@@ -5,6 +5,7 @@ import {
   Home,
   Menu,
   ShieldCheck,
+  Heart,
   X,
 } from 'lucide-react'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
@@ -34,6 +35,10 @@ export default function Header() {
              <Link to="/security" className="flex items-center gap-1.5 hover:text-black/70 transition-colors">
                 <ShieldCheck className="w-4 h-4" />
                 Security
+             </Link>
+             <Link to="/donate" className="flex items-center gap-1.5 hover:text-black/70 transition-colors">
+                <Heart className="w-4 h-4" />
+                Donate
              </Link>
              <a 
                href="https://github.com/xKesvaL/snap-memories" 
@@ -106,6 +111,19 @@ export default function Header() {
           >
             <ShieldCheck size={20} />
             <span className="font-medium">Security</span>
+          </Link>
+
+          <Link
+            to="/donate"
+            onClick={() => setIsOpen(false)}
+            className="flex items-center gap-3 p-3 rounded-lg hover:bg-[#f9f601] text-black transition-colors mb-2"
+            activeProps={{
+              className:
+                'flex items-center gap-3 p-3 rounded-lg bg-[#f9f601] hover:bg-[#f9f601] transition-colors mb-2',
+            }}
+          >
+            <Heart size={20} />
+            <span className="font-medium">Donate</span>
           </Link>
           
           <a
