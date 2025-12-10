@@ -75,6 +75,15 @@ export async function streamMemoriesToZip(
           
           // Create a Zip entry stream
           const zipFile = new fflate.ZipPassThrough(memory.filename);
+          
+          // Restore timestamp from memory date
+          if (memory.date) {
+            const date = new Date(memory.date);
+            if (!isNaN(date.getTime())) {
+              zipFile.mtime = date;
+            }
+          }
+
           zip.add(zipFile);
 
           const reader = response.body.getReader();
