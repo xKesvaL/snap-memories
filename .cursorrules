@@ -5,3 +5,12 @@ Use the latest version of Shadcn to install new components, like this command to
 ```bash
 pnpm dlx shadcn@latest add button
 ```
+
+# Package Manager
+
+Use Bun as the package manager.
+
+```bash
+bun install
+bun run dev
+```
