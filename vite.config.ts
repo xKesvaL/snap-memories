@@ -6,6 +6,8 @@ import viteTsConfigPaths from 'vite-tsconfig-paths'
 import tailwindcss from '@tailwindcss/vite'
 import { nitro } from 'nitro/vite'
 import { execSync } from 'child_process'
+import { generateSitemap } from 'tanstack-router-sitemap'
+import { sitemap } from './src/lib/sitemap'
 
 const commitHash = execSync('git rev-parse --short HEAD').toString().trim()
 const buildTime = new Date().toISOString()
@@ -29,6 +31,7 @@ const config = defineConfig({
         plugins: ['babel-plugin-react-compiler'],
       },
     }),
+    generateSitemap(sitemap)
   ],
 })
 
