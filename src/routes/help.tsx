@@ -98,7 +98,7 @@ function HelpPage() {
                 <li>
                     <strong>Unzip/Extract</strong> this file on your computer. 
                     <br/>
-                    <span className="text-sm italic">(Right-click the file -> "Extract All" on Windows or double-click on Mac).</span>
+                    <span className="text-sm italic">(Right-click the file -&gt; "Extract All" on Windows or double-click on Mac).</span>
                 </li>
                 <li>Open the extracted folder and navigate to the <strong>html</strong> folder.</li>
                 <li>Find the file named <strong>memories_history.html</strong>.</li>
