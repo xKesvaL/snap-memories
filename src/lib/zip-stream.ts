@@ -15,7 +15,8 @@ export type ProgressCallback = (progress: DownloadProgress) => void;
 export async function streamMemoriesToZip(
   memories: MemoryItem[],
   onProgress: ProgressCallback,
-  signal?: AbortSignal
+  signal?: AbortSignal,
+  concurrency: number = 3
 ) {
   // 1. Setup StreamSaver
   const fileStream = streamSaver.createWriteStream('memories.zip');
@@ -37,7 +38,7 @@ export async function streamMemoriesToZip(
     }
   });
 
-  const limit = pLimit(3); // Concurrency limit
+  const limit = pLimit(concurrency); // Concurrency limit
   let processedCount = 0;
   const errors: string[] = [];
 

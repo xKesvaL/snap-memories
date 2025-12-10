@@ -98,6 +98,12 @@ describe('MemoriesPage Integration', () => {
         expect(screen.getByText(/Progress:/)).toBeDefined();
     });
     
-    expect(zipper.streamMemoriesToZip).toHaveBeenCalledWith(mockMemories, expect.any(Function), expect.any(AbortSignal));
+    // Now called with concurrency param (default 3)
+    expect(zipper.streamMemoriesToZip).toHaveBeenCalledWith(
+        mockMemories, 
+        expect.any(Function), 
+        expect.any(AbortSignal),
+        3
+    );
   });
 });

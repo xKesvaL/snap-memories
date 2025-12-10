@@ -10,6 +10,7 @@ import { parseMemoriesHTML, MemoryItem } from '@/lib/memories-parser';
 import { streamMemoriesToZip, DownloadProgress } from '@/lib/zip-stream';
 import { Loader2, Upload, Download, XCircle, FileWarning } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { toast } from 'sonner';
 
 export const Route = createFileRoute('/memories')({
@@ -23,6 +24,7 @@ function MemoriesPage() {
   const [isParsing, setIsParsing] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
   const [progress, setProgress] = useState<DownloadProgress | null>(null);
+  const [concurrency, setConcurrency] = useState('3');
   const abortControllerRef = useRef<AbortController | null>(null);
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,7 +64,7 @@ function MemoriesPage() {
     try {
       await streamMemoriesToZip(memories, (p) => {
         setProgress({ ...p });
-      }, abortController.signal);
+      }, abortController.signal, parseInt(concurrency));
       
       if (!abortController.signal.aborted) {
          toast.success("Download complete!");
@@ -144,6 +146,24 @@ function MemoriesPage() {
                    Ensure you have a stable connection. Files will be zipped on-the-fly.
                 </AlertDescription>
              </Alert>
+
+             <div className="grid w-full max-w-sm items-center gap-1.5">
+                <Label htmlFor="concurrency">Download Concurrency</Label>
+                <Select value={concurrency} onValueChange={setConcurrency} disabled={isDownloading}>
+                  <SelectTrigger id="concurrency" className="w-[180px]">
+                    <SelectValue placeholder="Select concurrency" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="1">1 (Slow / Low RAM)</SelectItem>
+                    <SelectItem value="3">3 (Default)</SelectItem>
+                    <SelectItem value="5">5 (Fast)</SelectItem>
+                    <SelectItem value="10">10 (Very Fast / High RAM)</SelectItem>
+                  </SelectContent>
+                </Select>
+                <p className="text-xs text-muted-foreground">
+                  Higher concurrency uses more RAM and bandwidth but finishes faster.
+                </p>
+             </div>
 
              {isDownloading && progress && (
                <div className="space-y-2">
