@@ -78,7 +78,14 @@ export async function streamMemoriesToZip(
           
           // Restore timestamp from memory date
           if (memory.date) {
-            const date = new Date(memory.date);
+            let date = new Date(memory.date);
+            
+            // Handle "YYYY-MM-DD HH:MM:SS UTC" format if standard parse fails or for consistency
+            if (isNaN(date.getTime()) && memory.date.includes(' UTC')) {
+                const iso = memory.date.replace(' UTC', 'Z').replace(' ', 'T');
+                date = new Date(iso);
+            }
+
             if (!isNaN(date.getTime())) {
               zipFile.mtime = date;
             }
