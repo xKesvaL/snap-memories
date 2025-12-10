@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { HelpCircle, Download, FileText, Upload, Settings, Mail, Archive, AlertTriangle, Zap, Server } from 'lucide-react';
+import { HelpCircle, FileText, Upload, Settings, Mail, Archive, AlertTriangle, Zap, Server } from 'lucide-react';
 
 export const Route = createFileRoute('/help')({
   component: HelpPage,
@@ -20,15 +20,15 @@ export const Route = createFileRoute('/help')({
 
 function HelpPage() {
   return (
-    <div className="container mx-auto p-6 max-w-4xl min-h-[80vh] flex flex-col items-center justify-center">
+    <div className="container mx-auto p-4 md:p-6 max-w-4xl min-h-[80vh] flex flex-col items-center justify-center">
       <div className="text-center mb-12 space-y-4">
         <div className="bg-[#f9f601] w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm">
           <HelpCircle className="w-10 h-10 text-black" />
         </div>
-        <h1 className="text-4xl font-black tracking-tight text-slate-900 dark:text-slate-100">
+        <h1 className="text-3xl md:text-4xl font-black tracking-tight text-slate-900 dark:text-slate-100">
           How to Use SnapMemories
         </h1>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
           A complete step-by-step guide to downloading your Snapchat memories.
         </p>
       </div>
@@ -36,19 +36,22 @@ function HelpPage() {
       <div className="grid gap-8 w-full max-w-3xl">
         
         {/* Step 1: Request Data */}
-        <div className="relative pl-8 md:pl-0">
+        <div className="relative md:pl-0">
           <div className="hidden md:flex absolute -left-4 top-0 bottom-0 w-0.5 bg-slate-200 dark:bg-slate-800" />
           
           <Card className="relative border-2 border-slate-100 dark:border-slate-800 shadow-md">
-            <div className="absolute -left-3 md:-left-12 top-6 bg-black text-[#f9f601] w-8 h-8 rounded-full flex items-center justify-center font-bold text-lg shadow-sm z-10">
+            <div className="hidden md:flex absolute -left-12 top-6 bg-black text-[#f9f601] w-8 h-8 rounded-full items-center justify-center font-bold text-lg shadow-sm z-10">
               1
             </div>
             <CardHeader>
               <div className="flex items-center gap-3 mb-2">
-                <div className="p-2 bg-slate-100 dark:bg-slate-800 rounded-lg">
+                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-black text-[#f9f601] font-bold text-lg md:hidden shrink-0">
+                  1
+                </div>
+                <div className="p-2 bg-slate-100 dark:bg-slate-800 rounded-lg max-md:hidden">
                   <Settings className="w-6 h-6 text-slate-700 dark:text-slate-300" />
                 </div>
-                <CardTitle className="text-2xl">Request Your Data</CardTitle>
+                <CardTitle className="text-xl md:text-2xl">Request Your Data</CardTitle>
               </div>
               <CardDescription className="text-base">
                 You need to request your data export from Snapchat directly.
@@ -71,19 +74,22 @@ function HelpPage() {
         </div>
 
         {/* Step 2: Download & Extract */}
-        <div className="relative pl-8 md:pl-0">
+        <div className="relative md:pl-0">
           <div className="hidden md:flex absolute -left-4 top-0 bottom-0 w-0.5 bg-slate-200 dark:bg-slate-800" />
 
           <Card className="relative border-2 border-slate-100 dark:border-slate-800 shadow-md">
-            <div className="absolute -left-3 md:-left-12 top-6 bg-black text-[#f9f601] w-8 h-8 rounded-full flex items-center justify-center font-bold text-lg shadow-sm z-10">
+            <div className="hidden md:flex absolute -left-12 top-6 bg-black text-[#f9f601] w-8 h-8 rounded-full items-center justify-center font-bold text-lg shadow-sm z-10">
               2
             </div>
             <CardHeader>
               <div className="flex items-center gap-3 mb-2">
-                <div className="p-2 bg-slate-100 dark:bg-slate-800 rounded-lg">
+                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-black text-[#f9f601] font-bold text-lg md:hidden shrink-0">
+                  2
+                </div>
+                <div className="p-2 bg-slate-100 dark:bg-slate-800 rounded-lg max-md:hidden">
                   <Mail className="w-6 h-6 text-slate-700 dark:text-slate-300" />
                 </div>
-                <CardTitle className="text-2xl">Download & Extract</CardTitle>
+                <CardTitle className="text-xl md:text-2xl">Download & Extract</CardTitle>
               </div>
               <CardDescription className="text-base">
                 Get the file from your email.
@@ -103,7 +109,7 @@ function HelpPage() {
                 <li>Open the extracted folder and navigate to the <strong>html</strong> folder.</li>
                 <li>Find the file named <strong>memories_history.html</strong>.</li>
               </ol>
-              <div className="flex items-center gap-2 text-sm bg-slate-100 dark:bg-slate-800 p-3 rounded border border-slate-200 dark:border-slate-700 font-mono">
+              <div className="flex items-center gap-2 text-xs md:text-sm bg-slate-100 dark:bg-slate-800 p-3 rounded border border-slate-200 dark:border-slate-700 font-mono">
                 <FileText className="w-4 h-4" />
                 mydata/html/memories_history.html
               </div>
@@ -112,18 +118,21 @@ function HelpPage() {
         </div>
 
         {/* Step 3: Upload & Process */}
-        <div className="relative pl-8 md:pl-0">
+        <div className="relative md:pl-0">
           
           <Card className="relative border-2 border-slate-100 dark:border-slate-800 shadow-md">
-            <div className="absolute -left-3 md:-left-12 top-6 bg-black text-[#f9f601] w-8 h-8 rounded-full flex items-center justify-center font-bold text-lg shadow-sm z-10">
+            <div className="hidden md:flex absolute -left-12 top-6 bg-black text-[#f9f601] w-8 h-8 rounded-full items-center justify-center font-bold text-lg shadow-sm z-10">
               3
             </div>
             <CardHeader>
               <div className="flex items-center gap-3 mb-2">
-                <div className="p-2 bg-slate-100 dark:bg-slate-800 rounded-lg">
+                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-black text-[#f9f601] font-bold text-lg md:hidden shrink-0">
+                  3
+                </div>
+                <div className="p-2 bg-slate-100 dark:bg-slate-800 rounded-lg  max-md:hidden">
                   <Upload className="w-6 h-6 text-slate-700 dark:text-slate-300" />
                 </div>
-                <CardTitle className="text-2xl">Upload to SnapMemories</CardTitle>
+                <CardTitle className="text-xl md:text-2xl">Upload to SnapMemories</CardTitle>
               </div>
               <CardDescription className="text-base">
                 Let our tool do the heavy lifting.
