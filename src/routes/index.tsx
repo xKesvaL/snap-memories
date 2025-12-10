@@ -8,11 +8,13 @@ import { Progress } from '@/components/ui/progress';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 import { parseMemoriesHTML, MemoryItem } from '@/lib/memories-parser';
 import { streamMemoriesToZip, DownloadProgress } from '@/lib/zip-stream';
-import { Loader2, Download, XCircle, FileWarning, Upload, CheckCircle2, RefreshCcw, Film, Image as ImageIcon, FileText, HelpCircle } from 'lucide-react';
+import { Loader2, Download, XCircle, FileWarning, Upload, CheckCircle2, RefreshCcw, Film, Image as ImageIcon, FileText, HelpCircle, AlertTriangle } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { toast } from 'sonner';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+
+import { formatBytes } from '@/lib/utils';
 
 export const Route = createFileRoute('/')({
   component: MemoriesPage,
@@ -114,6 +116,9 @@ function MemoriesPage() {
 
   const videoCount = memories.filter(m => m.type === 'Video').length;
   const imageCount = memories.filter(m => m.type === 'Image').length;
+
+  // Estimation: Video ~7MB, Image ~1MB
+  const estimatedSize = (videoCount * 7 + imageCount * 1) * 1024 * 1024;
 
   return (
     <div className="container mx-auto p-6 max-w-2xl min-h-[80vh] flex flex-col justify-center items-center" ref={parent}>
@@ -218,8 +223,23 @@ function MemoriesPage() {
              </div>
 
              <div className="space-y-3 p-4 bg-yellow-50 dark:bg-yellow-900/10 rounded-lg border border-yellow-100 dark:border-yellow-900/20">
+                <div className="flex items-start gap-3">
+                   <AlertTriangle className="w-5 h-5 text-yellow-600 dark:text-yellow-500 shrink-0 mt-0.5" />
+                   <div className="space-y-1">
+                      <p className="font-semibold text-yellow-900 dark:text-yellow-100 text-sm">
+                        Estimated Size: ~{formatBytes(estimatedSize)}
+                      </p>
+                      <p className="text-xs text-yellow-700 dark:text-yellow-300/80 leading-relaxed">
+                        This file can get <strong>very large</strong>. Ensure you have enough disk space and a stable internet connection. 
+                        This is just an estimate based on average Snapchat file sizes; your actual download may vary.
+                      </p>
+                   </div>
+                </div>
+             </div>
+
+             <div className="space-y-3 p-4 bg-slate-50 dark:bg-slate-900/50 rounded-lg border border-slate-100 dark:border-slate-800">
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="concurrency" className="font-medium text-yellow-900 dark:text-yellow-100">Download Speed (Concurrency)</Label>
+                  <Label htmlFor="concurrency" className="font-medium">Download Speed (Concurrency)</Label>
                   <Select value={concurrency} onValueChange={setConcurrency} disabled={isDownloading}>
                     <SelectTrigger id="concurrency" className="w-[140px] h-8 bg-white dark:bg-slate-950">
                       <SelectValue placeholder="Select" />
@@ -232,7 +252,7 @@ function MemoriesPage() {
                     </SelectContent>
                   </Select>
                 </div>
-                <p className="text-xs text-yellow-700 dark:text-yellow-300/80">
+                <p className="text-xs text-muted-foreground">
                   Higher concurrency is faster but uses more memory. Reduce if crashing.
                 </p>
              </div>
