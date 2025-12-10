@@ -55,18 +55,18 @@
     "@biomejs/biome": "2.2.4",
     "@tanstack/devtools-event-client": "^0.3.2",
     "@tanstack/devtools-vite": "^0.3.11",
-    "@testing-library/dom": "^10.4.0",
-    "@testing-library/react": "^16.2.0",
-    "@types/node": "^22.10.2",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/react": "^16.3.0",
+    "@types/node": "^24.10.2",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "@types/streamsaver": "^2.0.5",
     "@vitejs/plugin-react": "^5.0.4",
     "babel-plugin-react-compiler": "^1.0.0",
-    "jsdom": "^27.0.0",
+    "jsdom": "^27.3.0",
     "typescript": "^5.7.2",
     "vite": "^7.1.7",
-    "vitest": "^3.0.5",
+    "vitest": "^4.0.15",
     "web-vitals": "^5.1.0"
   }
 }

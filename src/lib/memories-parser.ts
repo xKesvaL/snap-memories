@@ -6,7 +6,20 @@ export interface MemoryItem {
 }
 
 export const parseMemoriesHTML = async (file: File): Promise<MemoryItem[]> => {
-  const text = await file.text();
+  // Use readAsText for compatibility if file.text() is missing in test env
+  let text = '';
+  if (typeof file.text === 'function') {
+    text = await file.text();
+  } else {
+    // Basic polyfill for JSDOM 
+    text = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result as string);
+        reader.onerror = reject;
+        reader.readAsText(file);
+    });
+  }
+  
   const parser = new DOMParser();
   const doc = parser.parseFromString(text, "text/html");
   
